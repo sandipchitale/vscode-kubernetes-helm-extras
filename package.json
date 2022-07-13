@@ -1,0 +1,266 @@
+{
+    "name": "vscode-kubernetes-helm-extras",
+    "displayName": "Helm extras",
+    "icon": "images/icon.png",
+    "description": "Helm extras - preview rendered templates, load release revision templates, values, manifests, hooks, notes",
+    "version": "1.0.41",
+    "license": "LICENSE.md",
+    "keywords": [
+        "kubernetes",
+        "helm"
+    ],
+    "extensionDependencies": [
+        "ms-kubernetes-tools.vscode-kubernetes-tools"
+    ],
+    "publisher": "sandipchitale",
+    "author": {
+        "name": "Sandip Chitale"
+    },
+    "maintainers": [
+        "Sandip Chitale"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sandipchitale/vscode-kubernetes-helm-extras"
+    },
+    "engines": {
+        "vscode": "^1.37.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:k8s.helm.helmTemplatePreview.custom",
+        "onCommand:k8s.helm.release.revision.get.manifest",
+        "onCommand:k8s.helm.release.revision.get.manifest.selected",
+        "onCommand:k8s.helm.release.revision.get.templates",
+        "onCommand:k8s.helm.release.revision.get.templates.selected",
+        "onCommand:k8s.helm.release.revision.get.values",
+        "onCommand:k8s.helm.release.revision.get.notes",
+        "onCommand:k8s.helm.release.revision.get.hooks",
+        "onCommand:k8s.helm.release.revision.get.hooks.selected",
+        "onCommand:k8s.helm.release.revision.get.chart",
+        "onCommand:k8s.helm.release.revision.get.info",
+        "onCommand:k8s.helm.release.revision.get.some"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "k8s.helm.helmTemplatePreview.custom",
+                "title": "Preview Template (using .helmpreview)",
+                "description": "Run 'helm template' specified in .helmpreview on this chart and show only this file.",
+                "when": "editorLangId == helm-template",
+                "category": "Helm"
+            },
+            {
+                "command": "k8s.helm.release.revision.get.manifest",
+                "title": "01 Helm get manifest release revision",
+                "category": "Helm"
+            },
+            {
+                "command": "k8s.helm.release.revision.get.manifest.selected",
+                "title": "02 Helm get selected manifest release revision",
+                "category": "Helm"
+            },
+            {
+                "command": "k8s.helm.release.revision.get.templates",
+                "title": "03 Helm get template release revision",
+                "category": "Helm"
+            },
+            {
+                "command": "k8s.helm.release.revision.get.templates.selected",
+                "title": "04 Helm get selected template release revision",
+                "category": "Helm"
+            },
+            {
+                "command": "k8s.helm.release.revision.get.values",
+                "title": "05 Helm get values release revision",
+                "category": "Helm"
+            },
+            {
+                "command": "k8s.helm.release.revision.get.notes",
+                "title": "06 Helm get notes release revision",
+                "category": "Helm"
+            },
+            {
+                "command": "k8s.helm.release.revision.get.hooks",
+                "title": "07 Helm get hooks release revision",
+                "category": "Helm"
+            },
+            {
+                "command": "k8s.helm.release.revision.get.hooks.selected",
+                "title": "08 Helm get selected hooks release revision",
+                "category": "Helm"
+            },
+            {
+                "command": "k8s.helm.release.revision.get.chart",
+                "title": "09 Helm get chart release revision",
+                "category": "Helm"
+            },
+            {
+                "command": "k8s.helm.release.revision.get.info",
+                "title": "10 Helm get info release revision",
+                "category": "Helm"
+            },
+            {
+                "command": "k8s.helm.release.revision.get.some",
+                "title": "11 Helm get <some of manifest|template|value|notes|hooks|chart|info> release revision...",
+                "category": "Helm"
+            }
+        ],
+        "menus": {
+            "view/item/context": [
+                {
+                    "command": "k8s.helm.release.revision.get.manifest",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmRelease/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.manifest.selected",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmRelease/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.templates",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmRelease/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.templates.selected",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmRelease/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.values",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmRelease/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.notes",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmRelease/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.hooks",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmRelease/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.hooks.selected",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmRelease/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.chart",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmRelease/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.info",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmRelease/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.some",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmRelease/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.manifest",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmhistory/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.manifest.selected",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmhistory/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.templates",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmhistory/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.templates.selected",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmhistory/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.values",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmhistory/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.notes",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmhistory/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.hooks",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmhistory/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.hooks.selected",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmhistory/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.chart",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmhistory/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.info",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmhistory/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.some",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.helmhistory/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.manifest",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.resource\\.secret/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.manifest.selected",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.resource\\.secret/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.templates",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.resource\\.secret/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.templates.selected",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.resource\\.secret/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.values",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.resource\\.secret/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.notes",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.resource\\.secret/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.hooks",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.resource\\.secret/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.hooks.selected",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.resource\\.secret/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.chart",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.resource\\.secret/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.info",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.resource\\.secret/i"
+                },
+                {
+                    "command": "k8s.helm.release.revision.get.some",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.resource\\.secret/i"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "@types/mocha": "^2.2.42",
+        "@types/node": "^7.0.43",
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6"
+    },
+    "dependencies": {
+        "json-to-pretty-yaml": "^1.2.2",
+        "vscode-kubernetes-tools-api": "^1.0.0"
+    }
+}
