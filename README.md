@@ -58,7 +58,7 @@ None
 
 ## Release Notes
 
-### 1.0.41
+### 1.0.46
 
 Initial release.
 

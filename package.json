@@ -3,7 +3,7 @@
     "displayName": "Helm extras",
     "icon": "images/icon.png",
     "description": "Helm extras - preview rendered templates, load release revision templates, values, manifests, hooks, notes",
-    "version": "1.0.45",
+    "version": "1.0.46",
     "license": "LICENSE.md",
     "keywords": [
         "kubernetes",
